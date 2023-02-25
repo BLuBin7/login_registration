@@ -1,6 +1,8 @@
 package com.example.demo.appuser;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * Created by Binh
@@ -10,5 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 //triển khai Spring Security
 public class AppUserService implements UserDetailsService {
-
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
+    }
 }
