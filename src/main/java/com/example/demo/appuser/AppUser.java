@@ -1,8 +1,6 @@
 package com.example.demo.appuser;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,17 +23,22 @@ import java.util.Collections;
 @NoArgsConstructor
 @Entity // đây là 1 bảng trong csdl
 public class AppUser implements UserDetails {
-    @Id
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
-            allocationSize = 1 //kích thước phân bố trong bảng 
+            allocationSize = 1 //kích thước phân bố trong bảng
+    )
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
     )
     private long Id;
     private String name;
     private String username;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING) // chuỗi
     private AppUserRole appUserRole;
     private Boolean locked;
     private Boolean enabled;
